@@ -59,3 +59,31 @@ Track execution in small batches:
 - Do not close tasks without evidence links.
 - Do not merge batches without rollback strategy.
 - Re-estimate and split tasks when scope exceeds 2 days.
+
+## Operational Limits (Recommended Defaults)
+
+- WIP limit per owner: max 2 `InProgress` tasks.
+- Batch size: 2-5 tasks per batch.
+- Blocked SLA: escalate if `Blocked` state exceeds 1 business day.
+- Verify SLA: complete gate checks within 1 business day after `Verify`.
+
+## Gate Ownership Rules
+
+- Assign a gate owner per task (`quality owner`).
+- Assign rollback owner per task (`rollback owner`).
+- Task cannot move to `Done` without explicit gate owner sign-off.
+
+## Definition of Done (DoD)
+
+A task is `Done` only when all are true:
+- implementation merged
+- validation gates are green
+- observability evidence link is recorded
+- rollback note is updated
+- affected docs/ADRs are updated
+
+## Weekly Board Review
+
+- Review blocked tasks and dependency chain.
+- Drop stale tasks with no executable path.
+- Re-scope overgrown tasks into smaller reversible units.

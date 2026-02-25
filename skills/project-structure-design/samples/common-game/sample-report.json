@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "version": "1.0",
+    "project_type": "game",
+    "assumption_level": "medium"
+  },
+  "planning_augmentation": {
+    "items": [
+      {
+        "label": "basic progression loop",
+        "status": "Assumed"
+      },
+      {
+        "label": "economy source/sink model",
+        "status": "Proposed"
+      }
+    ]
+  },
+  "planning_doc_domain_map": null,
+  "domain_extraction": {
+    "summary": "Baseline domains derived from genre-agnostic game assumptions.",
+    "domains": [
+      {
+        "domain_name": "Account",
+        "zone": "Outgame(DDD)"
+      },
+      {
+        "domain_name": "Progression",
+        "zone": "Outgame(DDD)"
+      },
+      {
+        "domain_name": "Economy",
+        "zone": "Outgame(DDD)"
+      },
+      {
+        "domain_name": "GameplaySimulation",
+        "zone": "Ingame(ECS)"
+      }
+    ]
+  },
+  "domain_extraction_quality": {
+    "gates": {
+      "critical_min": 0.75,
+      "non_critical_min": 0.6
+    },
+    "per_domain": [
+      {
+        "domain_name": "Account",
+        "confidence_score": 0.8,
+        "evidence_refs": [
+          "planning/account-notes.md"
+        ],
+        "open_questions": [
+          "auth provider selection"
+        ],
+        "risk_level": "medium"
+      },
+      {
+        "domain_name": "Economy",
+        "confidence_score": 0.74,
+        "evidence_refs": [
+          "planning/economy.md"
+        ],
+        "open_questions": [
+          "premium currency split"
+        ],
+        "risk_level": "high"
+      }
+    ],
+    "open_questions": [
+      "authoritative multiplayer scope"
+    ]
+  },
+  "ddd_model": {
+    "bounded_contexts": [
+      "Account",
+      "Progression",
+      "Economy",
+      "Social"
+    ],
+    "context_map": [],
+    "aggregates": []
+  },
+  "actor_mapping": null,
+  "coding_conventions": {
+    "csharp": [
+      "clean naming",
+      "xml docs"
+    ],
+    "ts_js": []
+  },
+  "game_split": {
+    "outgame": "DDD",
+    "ingame": "ECS"
+  },
+  "unity_upm_plan": {
+    "packages": [
+      "com.company.game.foundation",
+      "com.company.game.ads",
+      "com.company.game.achievements",
+      "com.company.game.social"
+    ]
+  },
+  "architecture_recommendation": {
+    "style": "game split with DDD + ECS",
+    "tradeoffs": []
+  },
+  "folder_tree": [
+    "samples/common-game/sample-folder-tree.txt"
+  ],
+  "dependency_rules": [],
+  "adrs": [],
+  "roadmap": [],
+  "migration_plan": null,
+  "migration_task_board": null,
+  "validation_summary": {
+    "base_validator": "pass",
+    "integrity_validator": "pass"
+  }
+}

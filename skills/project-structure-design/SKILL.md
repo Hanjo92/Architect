@@ -46,10 +46,16 @@ When user provides game design/planning text:
 - extract core loop, progression, economy, social, multiplayer, live-ops signals
 - derive candidate domains and classify them into Outgame(DDD) vs Ingame(ECS)
 - prioritize domains by delivery impact and technical risk
+- score domain confidence and attach evidence references
 - generate sample folder structures from chosen domains and boundaries
 
 Read [game-design-analysis-playbook.md](references/game-design-analysis-playbook.md) and use [domain-catalog-template.md](references/domain-catalog-template.md).
+Apply quality gates from [domain-extraction-quality-criteria.md](references/domain-extraction-quality-criteria.md).
 Apply generation rules from [sample-folder-generator-rules.md](references/sample-folder-generator-rules.md).
+For genre-agnostic baseline, refer to [samples/common-game/README.md](samples/common-game/README.md).
+For genre-oriented baseline, refer to:
+- [samples/casual-game/README.md](samples/casual-game/README.md)
+- [samples/rpg-game/README.md](samples/rpg-game/README.md)
 
 ### 1.7) Organize planning docs by domain (when planning docs are many)
 
@@ -112,6 +118,10 @@ Return a concrete tree with:
 - naming conventions (package/module boundaries, shared vs feature-local code)
 
 Prefer context-first and feature-first grouping over purely technical grouping.
+When user asks to materialize skeleton folders, run:
+- `python3 scripts/generate_structure.py --project-type game --unity --multiplayer --genre casual --output <target-dir>`
+- `python3 scripts/generate_structure.py --project-type game --unity --genre rpg --output <target-dir>`
+- `python3 scripts/generate_structure.py --project-type webapp --output <target-dir>`
 
 ### 7) Apply coding conventions (game and web-app)
 
@@ -178,22 +188,26 @@ Produce results in this order:
 2. Planning augmentation summary (when initial planning is thin)
 3. Planning document domain map (when docs are many)
 4. Domain extraction summary from planning input (when provided)
-5. DDD model: bounded contexts, context map, aggregates
-6. Aggregate-to-actor mapping rules and concurrency model
-7. C# functional style rules (static class/function conventions)
-8. Game split rules (Outgame DDD / Ingame ECS) when applicable
-9. Unity UPM package modularization plan (when Unity game)
-10. Naming and function-comment conventions (game and web-app)
-11. Recommended architecture style and tradeoff table
-12. Proposed folder/repo tree
-13. Module responsibilities and dependency rules
-14. Key architecture decisions (ADR-style bullets)
-15. Phased implementation roadmap
-16. Optional migration path (only if legacy exists)
-17. Validation gate result summary
-18. Migration task board summary (when migration is in scope)
+5. Domain extraction quality report (confidence + evidence + open questions)
+6. DDD model: bounded contexts, context map, aggregates
+7. Aggregate-to-actor mapping rules and concurrency model
+8. C# functional style rules (static class/function conventions)
+9. Game split rules (Outgame DDD / Ingame ECS) when applicable
+10. Unity UPM package modularization plan (when Unity game)
+11. Naming and function-comment conventions (game and web-app)
+12. Recommended architecture style and tradeoff table
+13. Proposed folder/repo tree
+14. Module responsibilities and dependency rules
+15. Key architecture decisions (ADR-style bullets)
+16. Phased implementation roadmap
+17. Optional migration path (only if legacy exists)
+18. Validation gate result summary
+19. Migration task board summary (when migration is in scope)
 
 Keep output concise and implementation-oriented. Avoid abstract theory unless directly tied to a decision.
+Provide outputs in dual format:
+- human-readable Markdown report
+- machine-readable JSON companion following [output-json-format.md](references/output-json-format.md)
 
 Always align final answer with [output-template.md](references/output-template.md).
 Check forbidden design mistakes with [anti-patterns.md](references/anti-patterns.md) before finalizing.

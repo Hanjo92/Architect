@@ -44,6 +44,14 @@ Score each domain:
 
 Use score to sequence implementation phases.
 
+## 4.5) Apply Domain Extraction Quality Gate
+
+- score domain confidence and attach evidence refs
+- enforce quality gates before finalizing architecture output
+- mark low-confidence domains as provisional and add open questions
+
+Read [domain-extraction-quality-criteria.md](domain-extraction-quality-criteria.md).
+
 ## 5) Emit Design Output
 
 Must include:

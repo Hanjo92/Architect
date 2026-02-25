@@ -12,6 +12,7 @@ Rules:
 - execute only tasks marked `Ready`
 - update status/checkpoints after each task
 - keep rollback notes and evidence links per task
+- enforce task board operational limits (WIP, batch size, blocked SLA)
 
 ## 1) Baseline Current State
 
@@ -76,6 +77,14 @@ Repeat per task batch:
 3. Run gates and record evidence.
 4. Promote to `Done` or rollback to previous state.
 5. Replan next batch from board.
+
+## Board Health Gate
+
+Before each batch starts:
+- WIP limit is not exceeded.
+- No high-priority `Blocked` task exceeds SLA.
+- Gate owners are assigned for every `Ready` task.
+- DoD checklist is attached for every `Ready` task.
 
 ## Deliverable Checklist
 

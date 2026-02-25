@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "version": "1.0",
+    "project_type": "game",
+    "assumption_level": "medium",
+    "genre": "casual"
+  },
+  "domain_extraction": {
+    "summary": "Casual baseline prioritizes stage pipeline and retention analytics.",
+    "domains": [
+      {"domain_name": "Progression", "zone": "Outgame(DDD)"},
+      {"domain_name": "Economy", "zone": "Outgame(DDD)"},
+      {"domain_name": "LiveOps", "zone": "Outgame(DDD)"},
+      {"domain_name": "Analytics", "zone": "Outgame(DDD)"},
+      {"domain_name": "StageRuntime", "zone": "Ingame(ECS)"}
+    ]
+  },
+  "game_split": {"outgame": "DDD", "ingame": "ECS"},
+  "unity_upm_plan": {
+    "packages": [
+      "com.company.game.foundation",
+      "com.company.game.ads",
+      "com.company.game.achievements"
+    ]
+  },
+  "folder_tree": ["samples/casual-game/sample-folder-tree.txt"]
+}

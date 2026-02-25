@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_MD = ROOT / "SKILL.md"
 REF_DIR = ROOT / "references"
+SCRIPT_DIR = ROOT / "scripts"
 
 REQUIRED_REFERENCES = [
     "architecture-decision-tree.md",
@@ -25,8 +26,10 @@ REQUIRED_REFERENCES = [
     "anti-patterns.md",
     "migration-playbook.md",
     "migration-task-board-template.md",
+    "output-json-format.md",
     "game-design-analysis-playbook.md",
     "domain-catalog-template.md",
+    "domain-extraction-quality-criteria.md",
     "sample-folder-generator-rules.md",
     "lightweight-planning-augmentation.md",
     "planning-doc-domain-organization.md",
@@ -44,6 +47,8 @@ CRITICAL_PHRASES = [
     "migration-task-board-template.md",
     "lightweight planning augmentation",
     "planning docs are many",
+    "machine-readable JSON companion",
+    "confidence and attach evidence references",
 ]
 
 
@@ -52,6 +57,35 @@ def check_required_references(errors: list[str]) -> None:
         path = REF_DIR / filename
         if not path.exists():
             errors.append(f"Missing required reference file: references/{filename}")
+
+
+def check_required_scripts(errors: list[str]) -> None:
+    required_scripts = ["validate_skill_integrity.py", "generate_structure.py"]
+    for filename in required_scripts:
+        path = SCRIPT_DIR / filename
+        if not path.exists():
+            errors.append(f"Missing required script file: scripts/{filename}")
+
+
+def check_required_samples(errors: list[str]) -> None:
+    required_sample_files = [
+        "samples/common-game/README.md",
+        "samples/common-game/sample-report.md",
+        "samples/common-game/sample-report.json",
+        "samples/common-game/sample-folder-tree.txt",
+        "samples/casual-game/README.md",
+        "samples/casual-game/sample-report.md",
+        "samples/casual-game/sample-report.json",
+        "samples/casual-game/sample-folder-tree.txt",
+        "samples/rpg-game/README.md",
+        "samples/rpg-game/sample-report.md",
+        "samples/rpg-game/sample-report.json",
+        "samples/rpg-game/sample-folder-tree.txt",
+    ]
+    for rel in required_sample_files:
+        path = ROOT / rel
+        if not path.exists():
+            errors.append(f"Missing required sample file: {rel}")
 
 
 def check_skill_md_exists(errors: list[str]) -> str:
@@ -81,6 +115,8 @@ def check_critical_phrases(skill_text: str, errors: list[str]) -> None:
 def main() -> int:
     errors: list[str] = []
     check_required_references(errors)
+    check_required_scripts(errors)
+    check_required_samples(errors)
     skill_text = check_skill_md_exists(errors)
     if skill_text:
         check_markdown_links(skill_text, errors)

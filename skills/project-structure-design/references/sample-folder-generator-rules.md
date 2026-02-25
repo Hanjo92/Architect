@@ -38,3 +38,15 @@ Generated output must include:
 - primary repository tree
 - optional Unity `Packages/` tree
 - short explanation per major folder
+
+## Rule 6: Executable Generation
+
+When user wants actual folder creation, run:
+
+```bash
+python3 scripts/generate_structure.py --project-type game --unity --multiplayer --genre casual --output <target-dir>
+python3 scripts/generate_structure.py --project-type game --unity --genre rpg --output <target-dir>
+python3 scripts/generate_structure.py --project-type webapp --output <target-dir>
+```
+
+Use `--dry-run` first when user wants preview only.

@@ -20,6 +20,12 @@ Use this exact section order for consistent deliverables.
 - context map and integration boundaries
 - aggregates and invariants (Outgame only for games)
 
+## 3.5) Domain Extraction Quality
+
+- confidence score per domain
+- evidence references per domain
+- open questions for low-confidence domains
+
 ## 4) Implementation Style Rules
 
 - C# functional static-style rules
@@ -65,3 +71,9 @@ Use this exact section order for consistent deliverables.
 - batch plan and current batch status
 - done/in-progress/blocked counts
 - next executable `Ready` tasks
+- WIP/Blocked-SLA status and gate-owner assignment health
+
+## 12) JSON Companion
+
+- include machine-readable JSON following [output-json-format.md](output-json-format.md)
+- keep section parity with Markdown output

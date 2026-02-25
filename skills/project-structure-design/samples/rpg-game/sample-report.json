@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "version": "1.0",
+    "project_type": "game",
+    "assumption_level": "medium",
+    "genre": "rpg"
+  },
+  "domain_extraction": {
+    "summary": "RPG baseline emphasizes progression depth and inventory/quest integrity.",
+    "domains": [
+      {"domain_name": "Progression", "zone": "Outgame(DDD)"},
+      {"domain_name": "Inventory", "zone": "Outgame(DDD)"},
+      {"domain_name": "Equipment", "zone": "Outgame(DDD)"},
+      {"domain_name": "Quest", "zone": "Outgame(DDD)"},
+      {"domain_name": "CombatRuntime", "zone": "Ingame(ECS)"},
+      {"domain_name": "WorldSimulation", "zone": "Ingame(ECS)"}
+    ]
+  },
+  "game_split": {"outgame": "DDD", "ingame": "ECS"},
+  "unity_upm_plan": {
+    "packages": [
+      "com.company.game.foundation",
+      "com.company.game.achievements",
+      "com.company.game.social"
+    ]
+  },
+  "folder_tree": ["samples/rpg-game/sample-folder-tree.txt"]
+}
