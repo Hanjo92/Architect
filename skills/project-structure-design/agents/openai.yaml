@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Structure Designer"
+  short_description: "Design practical project structures and architecture plans."
+  default_prompt: "Design a clear project structure, architecture decisions, and implementation roadmap based on requirements."
