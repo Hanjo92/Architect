@@ -172,7 +172,7 @@ For medium/large migration, create and maintain [migration-task-board-template.m
 
 Always run both gates before finalizing:
 1. Base validator:
-   - `python3 /Users/song/.codex/skills/.system/skill-creator/scripts/quick_validate.py <skill-folder>`
+   - `python3 "$CODEX_HOME/skills/.system/skill-creator/scripts/quick_validate.py" <skill-folder>`
 2. Custom integrity validator:
    - `python3 scripts/validate_skill_integrity.py`
 
