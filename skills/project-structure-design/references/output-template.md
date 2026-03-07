@@ -94,7 +94,14 @@ Use this exact section order for formal deliverables.
 - strangler slice order and compatibility boundary
 - contract versioning and observability gates
 
-## 11) Migration Task Board Summary (Optional)
+## 11) Ambiguity Register (Optional)
+
+- ambiguous subsystem or runtime decision
+- current assumption
+- required evidence or parity proof
+- owner and re-evaluation trigger
+
+## 12) Migration Task Board Summary (Optional)
 
 - task board link/path
 - batch plan and current batch status
@@ -102,7 +109,7 @@ Use this exact section order for formal deliverables.
 - next executable `Ready` tasks
 - WIP/Blocked-SLA status and gate-owner assignment health
 
-## 12) JSON Companion
+## 13) JSON Companion
 
 - include machine-readable JSON following [output-json-format.md](output-json-format.md)
 - keep section parity with Markdown output

@@ -1,6 +1,6 @@
 ---
 name: project-structure-design
-description: Design project structure and system architecture for new or evolving software projects with a Domain-Driven Design first approach and functional programming style implementation in C#. For game projects, split architecture into Outgame (content/meta systems) and Ingame (core gameplay loop), applying DDD to Outgame and ECS to Ingame. In Unity projects, modularize Outgame capabilities (Ads/Achievement/Social) as UPM packages with Port/Adapter boundaries. Support loose-coupled multiplayer architecture via Port/Adapter and modular transport boundaries. Use when users ask for repository layout, bounded contexts, module boundaries, folder structure, architecture decisions, Unity structure, ASP.NET/web-app service structure, phased implementation plans, or migration from messy structure to maintainable structure. Trigger on requests like "프로젝트 구조 설계", "아키텍처 설계", "폴더 구조 추천", "DDD 구조화", "애그리거트 설계", "유니티 폴더 구조", "웹앱 구조", and "UPM 패키지 구조".
+description: Design project structure and system architecture for new or evolving software projects with a DDD-first approach and functional C# implementation guidance. For games, split Outgame(DDD) and Ingame(ECS), apply Unity UPM modularization, and keep multiplayer behind Port/Adapter boundaries. Support phased migration planning, including game engine migration, engine upgrades, and ambiguous subsystem cutover decisions. Use for repository layout, bounded contexts, module boundaries, folder structure, architecture decisions, Unity/web-app structure, migration strategy, and requests like "프로젝트 구조 설계", "폴더 구조 추천", "유니티 폴더 구조", "UPM 패키지 구조", "엔진 마이그레이션", and "엔진 업그레이드".
 ---
 
 # Project Structure Design
@@ -67,6 +67,18 @@ If project has many planning documents:
 - highlight missing/ambiguous domains requiring clarification
 
 Read [planning-doc-domain-organization.md](references/planning-doc-domain-organization.md).
+
+### 1.8) Classify engine migration ambiguity (when migrating engines or engine-heavy runtime layers)
+
+When project must move between engines, major engine versions, or engine runtime stacks:
+- inventory engine-coupled subsystems first: rendering, physics, input, animation, UI, scene/level flow, asset pipeline, save/load, networking, build tooling, editor tooling
+- classify each subsystem with one `Disposition`: `retain`, `wrap`, `replace`, `defer`, or `drop`
+- assign one `Source of Truth` during transition: `legacy engine`, `new engine`, `shared neutral format`, or `manual sync`
+- assign one `Cutover Mode`: `side-by-side`, `shadow/dual-run`, `slice-by-slice`, or `big-bang`
+- define one `Parity Gate` per subsystem before cutover: behavior parity, content parity, performance budget, determinism, or operational readiness
+- record unresolved or high-risk cases in an `Ambiguity Register` with current assumption, blocking evidence, owner, and re-evaluation trigger
+
+Read [engine-migration-decision-matrix.md](references/engine-migration-decision-matrix.md) before producing an engine migration plan.
 
 ### 2) Select architecture style
 
@@ -168,6 +180,7 @@ Provide 3 phases:
 For each phase, include deliverables, risks, and done criteria.
 When migrating existing systems, apply [migration-playbook.md](references/migration-playbook.md).
 For medium/large migration, create and maintain [migration-task-board-template.md](references/migration-task-board-template.md), and execute migration by task status/checkpoints.
+When migration involves engine/runtime replacement, classify each engine-coupled subsystem with [engine-migration-decision-matrix.md](references/engine-migration-decision-matrix.md) and carry `Disposition`, `Source of Truth`, `Parity Gate`, and `Cutover Mode` into the task board.
 
 ### 11) Run validation gates
 
@@ -219,8 +232,9 @@ Choose output mode by request scope:
      15. Key architecture decisions (ADR-style bullets)
      16. Phased implementation roadmap
      17. Optional migration path (only if legacy exists)
-     18. Validation gate result summary
-     19. Migration task board summary (when migration is in scope)
+     18. Ambiguity Register (when migration contains unclear engine/runtime decisions)
+     19. Validation gate result summary
+     20. Migration task board summary (when migration is in scope)
 
 Keep output concise and implementation-oriented. Avoid abstract theory unless directly tied to a decision.
 For `full-design-package`, provide outputs in dual format:

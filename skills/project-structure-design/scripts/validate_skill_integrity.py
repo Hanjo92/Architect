@@ -33,6 +33,7 @@ REQUIRED_REFERENCES = [
     "sample-folder-generator-rules.md",
     "lightweight-planning-augmentation.md",
     "planning-doc-domain-organization.md",
+    "engine-migration-decision-matrix.md",
 ]
 
 CRITICAL_PHRASES = [
@@ -49,6 +50,10 @@ CRITICAL_PHRASES = [
     "planning docs are many",
     "machine-readable JSON companion",
     "confidence and attach evidence references",
+    "Ambiguity Register",
+    "Parity Gate",
+    "Source of Truth",
+    "Cutover Mode",
 ]
 
 

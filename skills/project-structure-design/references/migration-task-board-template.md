@@ -11,13 +11,21 @@ Use this document to manage migration scope and progress.
 - `Done`: validated and merged
 - `Blocked`: cannot proceed due to dependency
 
+## Engine Migration Fields
+
+- `Disposition`: `retain`, `wrap`, `replace`, `defer`, or `drop`
+- `Source of Truth`: `legacy engine`, `new engine`, `shared neutral format`, or `manual sync`
+- `Cutover Mode`: `side-by-side`, `shadow/dual-run`, `slice-by-slice`, or `big-bang`
+- `Parity Gate`: the concrete proof required before ownership or traffic moves
+- Use these fields whenever runtime, engine, or asset pipeline migration is in scope.
+
 ## Task Board
 
 ```markdown
-| Task ID | Domain/Slice | Scope | Preconditions | Status | Owner | Risk | Rollback | Evidence |
-|---|---|---|---|---|---|---|---|---|
-| MIG-001 | Progression | Extract read model adapter | Contract v2 published | Ready | @owner | Medium | feature flag off | test-report-link |
-| MIG-002 | Economy | Move command path to new context | MIG-001 done | Planned | @owner | High | route to legacy | dashboard-link |
+| Task ID | Domain/Slice | Scope | Disposition | Source of Truth | Cutover Mode | Parity Gate | Preconditions | Status | Owner | Risk | Rollback | Evidence |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| MIG-001 | Save/Load | Extract save format adapter | wrap | shared neutral format | shadow/dual-run | old/new save files round-trip with identical gameplay state | neutral schema agreed | Ready | @owner | Medium | route writes to legacy serializer | test-report-link |
+| MIG-002 | Scene Flow | Move level loading to new runtime | replace | new engine | slice-by-slice | target level boots within load budget and event parity checklist passes | MIG-001 done | Planned | @owner | High | route affected scene to legacy launcher | dashboard-link |
 ```
 
 ## Task Detail Template
@@ -29,6 +37,10 @@ Use this document to manage migration scope and progress.
 - Scope in:
 - Scope out:
 - Dependencies:
+- Disposition:
+- Source of Truth:
+- Cutover Mode:
+- Parity Gate:
 - Execution steps:
 1.
 2.
@@ -78,6 +90,7 @@ Track execution in small batches:
 A task is `Done` only when all are true:
 - implementation merged
 - validation gates are green
+- parity gate is met and evidence is recorded
 - observability evidence link is recorded
 - rollback note is updated
 - affected docs/ADRs are updated
