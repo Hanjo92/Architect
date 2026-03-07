@@ -71,5 +71,5 @@ Use this format when producing machine-readable companion output.
 - `domain_extraction_quality`: include when domains are derived from planning docs.
 - `game_split` and `unity_upm_plan`: include only for game projects.
 - `migration_plan` and `migration_task_board`: include only when migration is in scope.
-- `ambiguity_register`: include when engine/runtime migration contains unresolved decisions or staged cutover assumptions.
+- `ambiguity_register`: include when subsystem/runtime migration contains unresolved decisions or staged cutover assumptions.
 - `validation_summary.notes`: include why a validator was skipped or any path/tooling caveat that affects confidence.

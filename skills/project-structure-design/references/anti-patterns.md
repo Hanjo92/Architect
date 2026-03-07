@@ -23,13 +23,14 @@ Check this list before finalizing architecture guidance.
 - Creating huge `foundation` package that contains domain-specific policies.
 - Allowing direct dependency between capability packages (ads -> social).
 
-## Engine Migration Anti-Patterns
+## Subsystem Migration Anti-Patterns
 
 - Moving rendering, physics, input, and save/load in one irreversible batch.
-- Treating engine migration as a pure folder move without behavior parity gates.
+- Treating subsystem migration as a pure folder move without behavior parity gates.
 - Letting both old and new engine runtimes write the same source of truth without ownership rules.
 - Porting scene/asset formats before deciding whether the subsystem is `retain`, `wrap`, `replace`, `defer`, or `drop`.
-- Hiding unresolved engine cutover decisions inside vague roadmap bullets instead of an explicit Ambiguity Register.
+- Hiding unresolved subsystem cutover decisions inside vague roadmap bullets instead of an explicit Ambiguity Register.
+- Migrating network contracts, auth/session, or analytics pipelines without naming a temporary compatibility boundary.
 
 ## Web-App / Service Anti-Patterns
 

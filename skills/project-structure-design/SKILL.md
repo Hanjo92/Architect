@@ -1,6 +1,6 @@
 ---
 name: project-structure-design
-description: Design project structure and system architecture for new or evolving software projects with a DDD-first approach and functional C# implementation guidance. For games, split Outgame(DDD) and Ingame(ECS), apply Unity UPM modularization, and keep multiplayer behind Port/Adapter boundaries. Support phased migration planning, including game engine migration, engine upgrades, and ambiguous subsystem cutover decisions. Use for repository layout, bounded contexts, module boundaries, folder structure, architecture decisions, Unity/web-app structure, migration strategy, and requests like "프로젝트 구조 설계", "폴더 구조 추천", "유니티 폴더 구조", "UPM 패키지 구조", "엔진 마이그레이션", and "엔진 업그레이드".
+description: Design project structure and system architecture for new or evolving software projects with a DDD-first approach and functional C# implementation guidance. For games, split Outgame(DDD) and Ingame(ECS), apply Unity UPM modularization, and keep multiplayer behind Port/Adapter boundaries. Support phased migration planning, including engine migration, runtime stack replacement, and ambiguous subsystem cutover decisions. Use for repository layout, bounded contexts, module boundaries, folder structure, architecture decisions, Unity/web-app structure, migration strategy, and requests like "프로젝트 구조 설계", "폴더 구조 추천", "유니티 폴더 구조", "UPM 패키지 구조", "엔진 마이그레이션", "엔진 업그레이드", and "마이그레이션 전략".
 ---
 
 # Project Structure Design
@@ -68,17 +68,17 @@ If project has many planning documents:
 
 Read [planning-doc-domain-organization.md](references/planning-doc-domain-organization.md).
 
-### 1.8) Classify engine migration ambiguity (when migrating engines or engine-heavy runtime layers)
+### 1.8) Classify subsystem migration ambiguity (when migrating shared runtime/tooling boundaries)
 
-When project must move between engines, major engine versions, or engine runtime stacks:
-- inventory engine-coupled subsystems first: rendering, physics, input, animation, UI, scene/level flow, asset pipeline, save/load, networking, build tooling, editor tooling
+When project must move between engines, major engine versions, runtime stacks, or shared technical subsystems:
+- inventory migration-coupled subsystems first: rendering, physics, input, animation, UI, scene/level flow, asset pipeline, save/load, networking, build tooling, editor tooling, backend contracts, analytics/telemetry, authentication/session, and content pipelines
 - classify each subsystem with one `Disposition`: `retain`, `wrap`, `replace`, `defer`, or `drop`
 - assign one `Source of Truth` during transition: `legacy engine`, `new engine`, `shared neutral format`, or `manual sync`
 - assign one `Cutover Mode`: `side-by-side`, `shadow/dual-run`, `slice-by-slice`, or `big-bang`
 - define one `Parity Gate` per subsystem before cutover: behavior parity, content parity, performance budget, determinism, or operational readiness
 - record unresolved or high-risk cases in an `Ambiguity Register` with current assumption, blocking evidence, owner, and re-evaluation trigger
 
-Read [engine-migration-decision-matrix.md](references/engine-migration-decision-matrix.md) before producing an engine migration plan.
+Read [subsystem-migration-decision-matrix.md](references/subsystem-migration-decision-matrix.md) before producing a migration plan that changes shared technical boundaries.
 
 ### 2) Select architecture style
 
@@ -135,6 +135,7 @@ When user asks to materialize skeleton folders, run the generator from `<skill-r
 - `python3 <skill-root>/scripts/generate_structure.py --project-type game --unity --multiplayer --genre casual --output <target-dir>`
 - `python3 <skill-root>/scripts/generate_structure.py --project-type game --unity --genre rpg --output <target-dir>`
 - `python3 <skill-root>/scripts/generate_structure.py --project-type webapp --output <target-dir>`
+- Add `--with-migration-scaffold` when user wants compatibility boundaries, ambiguity register, subsystem classification, or task board documents created with the initial structure.
 
 ### 7) Apply coding conventions (game and web-app)
 
@@ -180,7 +181,7 @@ Provide 3 phases:
 For each phase, include deliverables, risks, and done criteria.
 When migrating existing systems, apply [migration-playbook.md](references/migration-playbook.md).
 For medium/large migration, create and maintain [migration-task-board-template.md](references/migration-task-board-template.md), and execute migration by task status/checkpoints.
-When migration involves engine/runtime replacement, classify each engine-coupled subsystem with [engine-migration-decision-matrix.md](references/engine-migration-decision-matrix.md) and carry `Disposition`, `Source of Truth`, `Parity Gate`, and `Cutover Mode` into the task board.
+When migration involves engine/runtime replacement or any major subsystem swap, classify each affected subsystem with [subsystem-migration-decision-matrix.md](references/subsystem-migration-decision-matrix.md) and carry `Disposition`, `Source of Truth`, `Parity Gate`, and `Cutover Mode` into the task board.
 
 ### 11) Run validation gates
 
@@ -232,7 +233,7 @@ Choose output mode by request scope:
      15. Key architecture decisions (ADR-style bullets)
      16. Phased implementation roadmap
      17. Optional migration path (only if legacy exists)
-     18. Ambiguity Register (when migration contains unclear engine/runtime decisions)
+     18. Ambiguity Register (when migration contains unclear subsystem/runtime decisions)
      19. Validation gate result summary
      20. Migration task board summary (when migration is in scope)
 

@@ -11,13 +11,13 @@ Use this document to manage migration scope and progress.
 - `Done`: validated and merged
 - `Blocked`: cannot proceed due to dependency
 
-## Engine Migration Fields
+## Subsystem Migration Fields
 
 - `Disposition`: `retain`, `wrap`, `replace`, `defer`, or `drop`
 - `Source of Truth`: `legacy engine`, `new engine`, `shared neutral format`, or `manual sync`
 - `Cutover Mode`: `side-by-side`, `shadow/dual-run`, `slice-by-slice`, or `big-bang`
 - `Parity Gate`: the concrete proof required before ownership or traffic moves
-- Use these fields whenever runtime, engine, or asset pipeline migration is in scope.
+- Use these fields whenever runtime, engine, network stack, data pipeline, asset pipeline, or shared technical subsystem migration is in scope.
 
 ## Task Board
 
@@ -25,7 +25,7 @@ Use this document to manage migration scope and progress.
 | Task ID | Domain/Slice | Scope | Disposition | Source of Truth | Cutover Mode | Parity Gate | Preconditions | Status | Owner | Risk | Rollback | Evidence |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | MIG-001 | Save/Load | Extract save format adapter | wrap | shared neutral format | shadow/dual-run | old/new save files round-trip with identical gameplay state | neutral schema agreed | Ready | @owner | Medium | route writes to legacy serializer | test-report-link |
-| MIG-002 | Scene Flow | Move level loading to new runtime | replace | new engine | slice-by-slice | target level boots within load budget and event parity checklist passes | MIG-001 done | Planned | @owner | High | route affected scene to legacy launcher | dashboard-link |
+| MIG-002 | Session/Auth | Move login/session flow to new backend contract | replace | new engine | slice-by-slice | login, refresh, logout, and reconnect flows pass contract parity checklist | MIG-001 done | Planned | @owner | High | route affected clients to legacy auth gateway | dashboard-link |
 ```
 
 ## Task Detail Template

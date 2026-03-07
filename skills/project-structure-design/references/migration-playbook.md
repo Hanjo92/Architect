@@ -28,9 +28,9 @@ Rules:
 - Decide migration unit: by bounded context, by feature slice, or by runtime component.
 - Convert each migration unit into independently deployable task groups.
 
-## 2.5) Classify Engine-Coupled Subsystems (Mandatory for engine migration)
+## 2.5) Classify Shared Subsystems (Mandatory for subsystem-heavy migration)
 
-- Inventory rendering, physics, input, animation, UI, scene/level flow, asset pipeline, save/load, networking, build tooling, and editor tooling.
+- Inventory rendering, physics, input, animation, UI, scene/level flow, asset pipeline, save/load, networking, build tooling, editor tooling, backend contracts, analytics, authentication/session, and content pipelines.
 - Assign one `Disposition` per subsystem: `retain`, `wrap`, `replace`, `defer`, or `drop`.
 - Assign one `Source of Truth` during transition: `legacy engine`, `new engine`, `shared neutral format`, or `manual sync`.
 - Assign one `Cutover Mode`: `side-by-side`, `shadow/dual-run`, `slice-by-slice`, or `big-bang`.
@@ -99,8 +99,8 @@ Before each batch starts:
 
 - current-vs-target map
 - phased migration plan (phase/deliverable/risk/rollback)
-- engine subsystem classification matrix with `Disposition`, `Source of Truth`, `Cutover Mode`, and `Parity Gate` when engine migration is in scope
-- ambiguity register for unresolved engine/runtime decisions
+- subsystem classification matrix with `Disposition`, `Source of Truth`, `Cutover Mode`, and `Parity Gate` when migration changes shared technical boundaries
+- ambiguity register for unresolved subsystem/runtime decisions
 - contract versioning plan
 - test + observability gate plan
 - migration task board with status, owner, checkpoints, evidence, rollback notes

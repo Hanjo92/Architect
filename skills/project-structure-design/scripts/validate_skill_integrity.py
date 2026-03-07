@@ -33,7 +33,7 @@ REQUIRED_REFERENCES = [
     "sample-folder-generator-rules.md",
     "lightweight-planning-augmentation.md",
     "planning-doc-domain-organization.md",
-    "engine-migration-decision-matrix.md",
+    "subsystem-migration-decision-matrix.md",
 ]
 
 CRITICAL_PHRASES = [

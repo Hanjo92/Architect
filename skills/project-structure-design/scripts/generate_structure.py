@@ -205,6 +205,80 @@ def build_webapp_structure() -> list[str]:
     ]
 
 
+def build_migration_structure(project_type: str, unity: bool) -> list[str]:
+    if project_type == "game" and unity:
+        return [
+            "Assets/_Game/Compatibility/LegacyAdapters",
+            "Assets/_Game/Compatibility/NewStackAdapters",
+            "Assets/_Game/Transitions/Cutover",
+            "Assets/_Game/Transitions/FeatureFlags",
+            "Docs/Migration",
+            "Docs/Migration/Evidence",
+        ]
+
+    if project_type == "game":
+        return [
+            "src/compatibility/legacy-adapters",
+            "src/compatibility/new-stack-adapters",
+            "src/transitions/cutover",
+            "src/transitions/feature-flags",
+            "docs/migration",
+            "docs/migration/evidence",
+        ]
+
+    return [
+        "src/shared/compatibility/legacy-adapters",
+        "src/shared/compatibility/new-stack-adapters",
+        "src/shared/transitions/cutover",
+        "src/shared/transitions/feature-flags",
+        "docs/migration",
+        "docs/migration/evidence",
+    ]
+
+
+def build_migration_files(project_type: str, unity: bool) -> dict[str, str]:
+    docs_root = "Docs/Migration" if project_type == "game" and unity else "docs/migration"
+    return {
+        f"{docs_root}/README.md": """# Migration Scaffold
+
+Use this folder when the project needs staged migration across engines, runtimes, contracts, or other shared subsystems.
+
+## Included Files
+
+- `SubsystemClassification.md`: classify each affected subsystem with disposition, source of truth, cutover mode, and parity gate
+- `AmbiguityRegister.md`: track unresolved migration decisions explicitly
+- `TaskBoard.md`: seed execution tracking for reversible task batches
+
+## Suggested Flow
+
+1. Classify affected subsystems.
+2. Define source of truth and cutover mode.
+3. Record ambiguities before implementation starts.
+4. Move only `Ready` tasks into execution.
+""",
+        f"{docs_root}/SubsystemClassification.md": """# Subsystem Classification
+
+| Subsystem | Disposition | Source of Truth | Cutover Mode | Parity Gate | Rollback |
+|---|---|---|---|---|---|
+| Save/Load | wrap | shared neutral format | shadow/dual-run | old/new save files round-trip with equivalent state | route writes to legacy serializer |
+| Session/Auth | replace | new stack | slice-by-slice | login, refresh, logout, and reconnect flows pass parity checklist | route affected clients to legacy auth gateway |
+""",
+        f"{docs_root}/AmbiguityRegister.md": """# Ambiguity Register
+
+| Area | Current Assumption | Options Considered | Blocking Evidence | Owner | Re-evaluation Trigger |
+|---|---|---|---|---|---|
+| Asset Pipeline | Shared neutral export format is enough for transition | wrap legacy importer / replace importer / manual sync | import validation results pending | @owner | first content migration slice complete |
+""",
+        f"{docs_root}/TaskBoard.md": """# Migration Task Board
+
+| Task ID | Domain/Slice | Scope | Disposition | Source of Truth | Cutover Mode | Parity Gate | Preconditions | Status | Owner | Risk | Rollback | Evidence |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| MIG-001 | Save/Load | Extract save format adapter | wrap | shared neutral format | shadow/dual-run | old/new save files round-trip with equivalent state | neutral schema agreed | Ready | @owner | Medium | route writes to legacy serializer | test-report-link |
+| MIG-002 | Session/Auth | Move login/session flow to new backend contract | replace | new stack | slice-by-slice | login, refresh, logout, and reconnect flows pass contract parity checklist | MIG-001 done | Planned | @owner | High | route affected clients to legacy auth gateway | dashboard-link |
+""",
+    }
+
+
 def create_directories(root: Path, paths: list[str], dry_run: bool) -> int:
     created = 0
     for rel in paths:
@@ -215,6 +289,20 @@ def create_directories(root: Path, paths: list[str], dry_run: bool) -> int:
         if not path.exists():
             created += 1
         path.mkdir(parents=True, exist_ok=True)
+    return created
+
+
+def create_files(root: Path, files: dict[str, str], dry_run: bool) -> int:
+    created = 0
+    for rel, content in files.items():
+        path = root / rel
+        if dry_run:
+            print(f"[DRY-RUN] {path}")
+            continue
+        if not path.exists():
+            created += 1
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(content, encoding="utf-8")
     return created
 
 
@@ -252,6 +340,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Print structure without creating directories.",
     )
+    parser.add_argument(
+        "--with-migration-scaffold",
+        action="store_true",
+        help="Add compatibility, cutover, and migration documentation scaffold.",
+    )
     return parser.parse_args()
 
 
@@ -268,11 +361,23 @@ def main() -> int:
     else:
         paths = build_webapp_structure()
 
+    files: dict[str, str] = {}
+    if args.with_migration_scaffold:
+        paths.extend(build_migration_structure(project_type=args.project_type, unity=args.unity))
+        files = build_migration_files(project_type=args.project_type, unity=args.unity)
+
     created = create_directories(root, paths, args.dry_run)
+    created_files = create_files(root, files, args.dry_run)
     if args.dry_run:
-        print(f"Dry-run complete. Planned directories: {len(paths)}")
+        print(
+            f"Dry-run complete. Planned directories: {len(paths)}, planned files: {len(files)}"
+        )
     else:
-        print(f"Done. Total directories in template: {len(paths)}, newly created: {created}")
+        print(
+            "Done. "
+            f"Total directories in template: {len(paths)}, newly created: {created}. "
+            f"Template files created: {created_files}"
+        )
     return 0
 
 

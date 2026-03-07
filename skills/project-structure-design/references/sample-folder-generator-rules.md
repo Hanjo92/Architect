@@ -44,9 +44,10 @@ Generated output must include:
 When user wants actual folder creation, run:
 
 ```bash
-python3 scripts/generate_structure.py --project-type game --unity --multiplayer --genre casual --output <target-dir>
-python3 scripts/generate_structure.py --project-type game --unity --genre rpg --output <target-dir>
-python3 scripts/generate_structure.py --project-type webapp --output <target-dir>
+python3 <skill-root>/scripts/generate_structure.py --project-type game --unity --multiplayer --genre casual --output <target-dir>
+python3 <skill-root>/scripts/generate_structure.py --project-type game --unity --genre rpg --output <target-dir>
+python3 <skill-root>/scripts/generate_structure.py --project-type webapp --output <target-dir>
 ```
 
 Use `--dry-run` first when user wants preview only.
+Add `--with-migration-scaffold` when the project needs compatibility boundaries, migration docs, ambiguity tracking, or subsystem cutover planning from day one.

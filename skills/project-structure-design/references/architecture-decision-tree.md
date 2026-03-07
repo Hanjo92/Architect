@@ -39,10 +39,10 @@ Then go to Step 4.
   - Keep provider SDK integration inside package adapter layer.
   - Keep Ingame and app code dependent on package abstractions only.
 
-## Step 4.7: Engine Migration Route
+## Step 4.7: Subsystem Migration Route
 
-- If project is migrating between engines or major engine runtime stacks:
-  - Inventory engine-coupled subsystems before proposing target structure.
+- If project is migrating between engines, major runtime stacks, or shared technical subsystems:
+  - Inventory affected subsystems before proposing target structure.
   - Classify each subsystem with `retain`, `wrap`, `replace`, `defer`, or `drop`.
   - Assign one `Source of Truth` and one `Cutover Mode` per subsystem.
   - Define a concrete `Parity Gate` before moving traffic/content/runtime ownership.

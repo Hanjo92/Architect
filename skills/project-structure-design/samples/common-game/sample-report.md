@@ -49,3 +49,10 @@ See `sample-folder-tree.txt`.
 
 - Base validator: pass
 - Integrity validator: pass
+
+## 9) Optional Migration Scaffold
+
+- `docs/migration/subsystem-classification.md`
+- `docs/migration/ambiguity-register.md`
+- `docs/migration/task-board.md`
+- create compatibility adapters and cutover boundaries when subsystem migration is expected

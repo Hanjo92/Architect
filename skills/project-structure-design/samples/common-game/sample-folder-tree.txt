@@ -36,6 +36,12 @@ game-project/
       transport/
         local-loopback-adapter/
         netcode-adapter/
+    compatibility/
+      legacy-adapters/
+      new-stack-adapters/
+    transitions/
+      cutover/
+      feature-flags/
     contracts/
       outgame-ingame/
       ingame-multiplayer/
@@ -54,3 +60,7 @@ game-project/
   docs/
     architecture/
     adr/
+    migration/
+      ambiguity-register.md
+      subsystem-classification.md
+      task-board.md

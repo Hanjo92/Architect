@@ -96,7 +96,7 @@ Use this exact section order for formal deliverables.
 
 ## 11) Ambiguity Register (Optional)
 
-- ambiguous subsystem or runtime decision
+- ambiguous subsystem, runtime, or contract decision
 - current assumption
 - required evidence or parity proof
 - owner and re-evaluation trigger

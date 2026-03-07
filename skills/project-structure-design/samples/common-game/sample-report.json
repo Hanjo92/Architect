@@ -111,10 +111,34 @@
   "dependency_rules": [],
   "adrs": [],
   "roadmap": [],
-  "migration_plan": null,
-  "migration_task_board": null,
+  "migration_plan": {
+    "mode": "optional scaffold",
+    "notes": [
+      "Create compatibility adapters before moving subsystem ownership",
+      "Define source of truth and cutover mode per affected subsystem"
+    ]
+  },
+  "ambiguity_register": [
+    {
+      "area": "Asset Pipeline",
+      "current_assumption": "Shared neutral export format is sufficient for staged migration.",
+      "required_evidence": [
+        "import validation results",
+        "authoring workflow confirmation"
+      ],
+      "owner": "@owner",
+      "reevaluation_trigger": "first content migration slice complete"
+    }
+  ],
+  "migration_task_board": {
+    "path": "docs/migration/task-board.md",
+    "next_ready_tasks": [
+      "MIG-001"
+    ]
+  },
   "validation_summary": {
     "base_validator": "pass",
-    "integrity_validator": "pass"
+    "integrity_validator": "pass",
+    "notes": []
   }
 }

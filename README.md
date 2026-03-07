@@ -48,9 +48,13 @@ python3 skills/project-structure-design/scripts/generate_structure.py \
 # 웹앱
 python3 skills/project-structure-design/scripts/generate_structure.py \
   --project-type webapp --output /path/to/project
+
+# 웹앱 + 마이그레이션 스캐폴드
+python3 skills/project-structure-design/scripts/generate_structure.py \
+  --project-type webapp --with-migration-scaffold --output /path/to/project
 ```
 
-`--dry-run` 옵션으로 생성 전 미리보기 가능합니다.
+`--dry-run` 옵션으로 생성 전 미리보기 가능합니다. `--with-migration-scaffold`를 추가하면 compatibility boundary, ambiguity register, subsystem classification, task board 문서가 함께 생성됩니다.
 
 ## 서브모듈로 사용
 

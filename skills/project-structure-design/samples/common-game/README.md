@@ -19,3 +19,4 @@ Use this sample when genre-specific details are not available yet.
 1. Start from `sample-report.md` sections.
 2. Replace placeholder assumptions with project-specific facts.
 3. Keep `sample-report.json` in sync when delivering dual-format output.
+4. If migration is in scope, layer in a migration scaffold with subsystem classification, ambiguity register, and task board docs.

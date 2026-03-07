@@ -1,6 +1,6 @@
-# Engine Migration Decision Matrix
+# Subsystem Migration Decision Matrix
 
-Use this matrix when a game project is migrating between engines, major engine versions, or engine-heavy runtime stacks.
+Use this matrix when a project is migrating between engines, major runtime versions, backend/network stacks, asset pipelines, or other shared technical subsystems.
 
 ## Goal
 
@@ -45,6 +45,10 @@ Use this matrix when a game project is migrating between engines, major engine v
 | Save/Load | wrap | shared neutral format | shadow/dual-run | old/new save round-trip produces equivalent gameplay state |
 | Networking | wrap or replace | legacy engine or new engine | side-by-side | session lifecycle parity and rollback path proven |
 | Build/Editor Tooling | defer | legacy engine | side-by-side | developer workflow remains operable during migration |
+| Backend Contracts | wrap or replace | shared neutral format | shadow/dual-run or slice-by-slice | v1/v2 contract parity for required user journeys |
+| Authentication/Session | wrap or replace | legacy service or new service | side-by-side | login, refresh, reconnect, and revoke flows pass parity checklist |
+| Analytics/Telemetry | defer or replace | shared neutral format | side-by-side | event schema parity and dashboard continuity verified |
+| Content Pipeline | wrap or replace | shared neutral format | slice-by-slice | import/export, validation, and authoring workflow pass |
 
 ## Ambiguity Register Rules
 
@@ -65,7 +69,7 @@ Track each ambiguity with:
 
 ## Output Expectation
 
-When engine migration is in scope, include a matrix or table that lists each engine-coupled subsystem with:
+When subsystem-heavy migration is in scope, include a matrix or table that lists each affected subsystem with:
 - disposition
 - source of truth
 - cutover mode
