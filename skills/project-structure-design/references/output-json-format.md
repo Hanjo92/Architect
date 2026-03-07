@@ -8,6 +8,7 @@ Use this format when producing machine-readable companion output.
 - Use `null` for non-applicable optional sections.
 - Keep arrays ordered the same as Markdown section order.
 - Add concise values; avoid verbose prose in JSON.
+- Produce the JSON companion for full design packages, or for compact guidance only when the user explicitly asks for machine-readable output.
 
 ## Top-Level Shape
 
@@ -55,8 +56,9 @@ Use this format when producing machine-readable companion output.
   "migration_plan": null,
   "migration_task_board": null,
   "validation_summary": {
-    "base_validator": "pass|fail",
-    "integrity_validator": "pass|fail"
+    "base_validator": "pass|fail|skipped",
+    "integrity_validator": "pass|fail|skipped",
+    "notes": []
   }
 }
 ```
@@ -68,3 +70,4 @@ Use this format when producing machine-readable companion output.
 - `domain_extraction_quality`: include when domains are derived from planning docs.
 - `game_split` and `unity_upm_plan`: include only for game projects.
 - `migration_plan` and `migration_task_board`: include only when migration is in scope.
+- `validation_summary.notes`: include why a validator was skipped or any path/tooling caveat that affects confidence.

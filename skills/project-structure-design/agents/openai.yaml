@@ -1,4 +1,4 @@
 interface:
-  display_name: "Project Structure Designer"
-  short_description: "Design practical project structures and architecture plans."
-  default_prompt: "Design a clear project structure, architecture decisions, and implementation roadmap based on requirements."
+  display_name: "Project Structure Design"
+  short_description: "Design DDD-first project structures, Unity/web-app architecture, and migration plans."
+  default_prompt: "Design a DDD-first project structure with bounded contexts, folder layout, architecture decisions, and a phased roadmap for this game or web-app."

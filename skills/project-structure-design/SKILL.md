@@ -6,6 +6,7 @@ description: Design project structure and system architecture for new or evolvin
 # Project Structure Design
 
 Design structures with Domain-Driven Design as the default. Favor clear domain boundaries, explicit ubiquitous language, and implementation choices that protect aggregate invariants.
+Resolve bundled script paths relative to this `SKILL.md`. When this skill is installed into another repository, treat the containing folder as `<skill-root>` and run `<skill-root>/scripts/...` commands instead of assuming the current working directory is the skill folder.
 
 ## Workflow
 
@@ -118,10 +119,10 @@ Return a concrete tree with:
 - naming conventions (package/module boundaries, shared vs feature-local code)
 
 Prefer context-first and feature-first grouping over purely technical grouping.
-When user asks to materialize skeleton folders, run:
-- `python3 scripts/generate_structure.py --project-type game --unity --multiplayer --genre casual --output <target-dir>`
-- `python3 scripts/generate_structure.py --project-type game --unity --genre rpg --output <target-dir>`
-- `python3 scripts/generate_structure.py --project-type webapp --output <target-dir>`
+When user asks to materialize skeleton folders, run the generator from `<skill-root>`:
+- `python3 <skill-root>/scripts/generate_structure.py --project-type game --unity --multiplayer --genre casual --output <target-dir>`
+- `python3 <skill-root>/scripts/generate_structure.py --project-type game --unity --genre rpg --output <target-dir>`
+- `python3 <skill-root>/scripts/generate_structure.py --project-type webapp --output <target-dir>`
 
 ### 7) Apply coding conventions (game and web-app)
 
@@ -170,11 +171,15 @@ For medium/large migration, create and maintain [migration-task-board-template.m
 
 ### 11) Run validation gates
 
-Always run both gates before finalizing:
-1. Base validator:
-   - `python3 "$CODEX_HOME/skills/.system/skill-creator/scripts/quick_validate.py" <skill-folder>`
+Always run the custom integrity validator before finalizing.
+Run the base validator when the `quick_validate.py` script is available in the environment.
+Resolve all validator paths from `<skill-root>`, not from the consumer repository root.
+
+1. Base validator (when available):
+   - `python3 "$CODEX_HOME/skills/.system/skill-creator/scripts/quick_validate.py" <skill-root>`
+   - If `$CODEX_HOME` is unset or `quick_validate.py` is unavailable, mark the base validator as `skipped` and state why.
 2. Custom integrity validator:
-   - `python3 scripts/validate_skill_integrity.py`
+   - `python3 <skill-root>/scripts/validate_skill_integrity.py`
 
 Custom integrity validator checks:
 - required reference files exist
@@ -183,29 +188,42 @@ Custom integrity validator checks:
 
 ## Output Contract
 
-Produce results in this order:
-1. Context and assumptions
-2. Planning augmentation summary (when initial planning is thin)
-3. Planning document domain map (when docs are many)
-4. Domain extraction summary from planning input (when provided)
-5. Domain extraction quality report (confidence + evidence + open questions)
-6. DDD model: bounded contexts, context map, aggregates
-7. Aggregate-to-actor mapping rules and concurrency model
-8. C# functional style rules (static class/function conventions)
-9. Game split rules (Outgame DDD / Ingame ECS) when applicable
-10. Unity UPM package modularization plan (when Unity game)
-11. Naming and function-comment conventions (game and web-app)
-12. Recommended architecture style and tradeoff table
-13. Proposed folder/repo tree
-14. Module responsibilities and dependency rules
-15. Key architecture decisions (ADR-style bullets)
-16. Phased implementation roadmap
-17. Optional migration path (only if legacy exists)
-18. Validation gate result summary
-19. Migration task board summary (when migration is in scope)
+Choose output mode by request scope:
+
+1. `compact-guidance`
+   - Use for narrow asks such as a folder tree recommendation, a bounded-context sketch, a quick Unity/web-app structure answer, or an architecture comparison.
+   - Return concise Markdown only:
+     - context and assumptions
+     - recommended structure or boundary decision
+     - key dependency rules or tradeoffs
+     - next implementation steps
+   - Include JSON only when the user explicitly asks for machine-readable output.
+
+2. `full-design-package`
+   - Use for formal architecture design, planning-doc analysis, migration planning, or whenever the user asks for a detailed deliverable.
+   - Produce results in this order:
+     1. Context and assumptions
+     2. Planning augmentation summary (when initial planning is thin)
+     3. Planning document domain map (when docs are many)
+     4. Domain extraction summary from planning input (when provided)
+     5. Domain extraction quality report (confidence + evidence + open questions)
+     6. DDD model: bounded contexts, context map, aggregates
+     7. Aggregate-to-actor mapping rules and concurrency model
+     8. C# functional style rules (static class/function conventions)
+     9. Game split rules (Outgame DDD / Ingame ECS) when applicable
+     10. Unity UPM package modularization plan (when Unity game)
+     11. Naming and function-comment conventions (game and web-app)
+     12. Recommended architecture style and tradeoff table
+     13. Proposed folder/repo tree
+     14. Module responsibilities and dependency rules
+     15. Key architecture decisions (ADR-style bullets)
+     16. Phased implementation roadmap
+     17. Optional migration path (only if legacy exists)
+     18. Validation gate result summary
+     19. Migration task board summary (when migration is in scope)
 
 Keep output concise and implementation-oriented. Avoid abstract theory unless directly tied to a decision.
-Provide outputs in dual format:
+For `full-design-package`, provide outputs in dual format:
 - human-readable Markdown report
 - machine-readable JSON companion following [output-json-format.md](references/output-json-format.md)
 

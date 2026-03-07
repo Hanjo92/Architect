@@ -1,6 +1,35 @@
 # Output Template
 
-Use this exact section order for consistent deliverables.
+Choose the output mode that matches the request scope.
+
+## Compact Guidance
+
+Use this for narrow asks that do not need a formal design package.
+
+## 1) Context and Assumptions
+
+- project type
+- constraints
+- missing inputs + explicit assumptions
+
+## 2) Recommendation
+
+- recommended structure, boundary decision, or architecture choice
+- shortest rationale that explains why this is the right default
+
+## 3) Key Rules
+
+- dependency direction
+- module/package boundaries
+- naming or implementation rules only if they affect the recommendation
+
+## 4) Next Steps
+
+- 2-5 concrete follow-up actions
+
+## Full Design Package
+
+Use this exact section order for formal deliverables.
 
 ## 1) Context and Assumptions
 
