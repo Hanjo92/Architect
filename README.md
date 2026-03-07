@@ -52,6 +52,39 @@ python3 skills/project-structure-design/scripts/generate_structure.py \
 
 `--dry-run` 옵션으로 생성 전 미리보기 가능합니다.
 
+## 서브모듈로 사용
+
+다른 프로젝트에서 이 저장소를 스킬 서브모듈로 붙여 재사용할 수 있습니다.
+
+### 1) 서브모듈 추가
+
+```bash
+git submodule add https://github.com/Duskore/Architect.git tools/architect-skill
+git submodule update --init --recursive
+```
+
+### 2) 대상 프로젝트 `AGENTS.md`에 스킬 등록
+
+```md
+## Skills
+
+### Available skills
+- project-structure-design: Design project structure and system architecture for game/web-app projects. Includes DDD/ECS split for games, Unity UPM modularization, planning augmentation, domain extraction, migration playbook/task board, and validation gates. (file: tools/architect-skill/skills/project-structure-design/SKILL.md)
+```
+
+### 3) 사용 예시
+
+```text
+[$project-structure-design](tools/architect-skill/skills/project-structure-design/SKILL.md)
+이 프로젝트 구조 설계를 진행해줘.
+```
+
+이미 clone한 프로젝트에서 서브모듈만 받아오려면 아래 명령을 사용하면 됩니다.
+
+```bash
+git submodule update --init --recursive
+```
+
 ## 검증
 
 ```bash
