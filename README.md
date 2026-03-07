@@ -5,6 +5,7 @@
 ## 포함 내용
 
 - 스킬 본체: `skills/project-structure-design/SKILL.md`
+- 보조 스킬: `skills/dependency-boundary-checker/SKILL.md`
 - 참고 가이드: `skills/project-structure-design/references/`
 - 실행 스크립트:
   - `skills/project-structure-design/scripts/generate_structure.py`
@@ -25,6 +26,8 @@
   - 도메인 추출 품질 게이트(신뢰도/근거) 적용
 - 마이그레이션:
   - 플레이북 + 태스크 보드 기반 운영
+- 경계 검증:
+  - forbidden import / layer leak / module coupling 점검
 
 ## 빠른 사용
 

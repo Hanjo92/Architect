@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dependency Boundary Checker"
+  short_description: "Detect layer and module dependency boundary violations."
+  default_prompt: "Inspect this codebase for dependency boundary violations, forbidden imports, and architecture rule leaks."

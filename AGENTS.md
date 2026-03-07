@@ -6,6 +6,7 @@ A skill is a set of local instructions to follow that is stored in a `SKILL.md` 
 
 ### Available skills
 - project-structure-design: Design project structure and system architecture for game/web-app projects. Includes DDD/ECS split for games, Unity UPM modularization, planning augmentation, domain extraction, migration playbook/task board, and validation gates. (file: skills/project-structure-design/SKILL.md)
+- dependency-boundary-checker: Inspect repositories for dependency boundary violations, forbidden imports, layer leaks, and module coupling regressions. Use for architecture conformance review, DDD/Clean/Hexagonal boundary validation, Unity/web-app module dependency checks, and migration dependency audits. (file: skills/dependency-boundary-checker/SKILL.md)
 
 ### How to use skills
 - Trigger rules: If the user names a skill (with `$SkillName` or plain text) OR the task clearly matches a skill description above, use that skill for that turn.
