@@ -17,7 +17,7 @@ Architecture skill repository for project structure design, migration planning, 
 ## Release
 
 - Latest release: [v0.1.0](https://github.com/Hanjo92/Architect/releases/tag/v0.1.0)
-- Changelog: [CHANGELOG.md](/Users/song/Projects/Architect/CHANGELOG.md)
+- Changelog: [CHANGELOG.md](CHANGELOG.md)
 
 ## 포함 내용
 
@@ -29,25 +29,16 @@ Architecture skill repository for project structure design, migration planning, 
   - `skills/project-structure-design/scripts/validate_skill_integrity.py`
 - 릴리즈 문서:
   - `CHANGELOG.md`
-- 플랫폼 마이그레이션 문서:
-  - `Platform/README.md`
-  - `Platform/platform-migration-manifest.template.json`
-  - `Platform/shared-migration-playbook.md`
-  - `Platform/Codex/README.md`
-  - `Platform/Codex/sample-output.md`
-  - `Platform/Codex/sample-output.json`
-  - `Platform/Claude/README.md`
-  - `Platform/Claude/example-usage.md`
-  - `Platform/Claude/sample-output.md`
-  - `Platform/Claude/sample-output.json`
-  - `Platform/Antigravity/README.md`
-  - `Platform/Antigravity/example-usage.md`
-  - `Platform/Antigravity/sample-output.md`
-  - `Platform/Antigravity/sample-output.json`
+- 플랫폼 마이그레이션 문서 (`Platform/`):
+  - 공통: `README.md`, `platform-migration-manifest.template.json`, `shared-migration-playbook.md`
+  - Codex: `AGENTS.template.md`, `sample-output.md`, `validation.config.json` 등
+  - Claude: `CLAUDE.md.template`, `system-prompt.template.md`, `example-usage.md` 등
+  - Antigravity: `agent-config.template.yaml`, `prompt-pack.template.md`, `example-usage.md` 등
 - 샘플 세트:
   - 공통: `skills/project-structure-design/samples/common-game/`
   - 캐주얼: `skills/project-structure-design/samples/casual-game/`
   - RPG: `skills/project-structure-design/samples/rpg-game/`
+  - 포트/어댑터: `samples/unity-port-adapter/`
 
 ## 핵심 기능
 
@@ -100,7 +91,7 @@ python3 skills/project-structure-design/scripts/generate_structure.py \
 ### 1) 서브모듈 추가
 
 ```bash
-git submodule add https://github.com/Duskore/Architect.git tools/architect-skill
+git submodule add https://github.com/Hanjo92/Architect.git tools/architect-skill
 git submodule update --init --recursive
 ```
 
