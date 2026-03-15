@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.1] - 2026-03-16
+
+### Added
+- Repository banner images for better visual representation.
+- `unity-port-adapter` sample to the README sample list.
+
+### Fixed
+- Incorrect repository URL and file paths in README.
+- Absolute paths in documentation changed to relative paths for better portability.
+
 ## [v0.1.0] - 2026-03-16
 
 ### Added
