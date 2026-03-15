@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Game.Multiplayer.Abstractions;
@@ -52,9 +53,15 @@ public sealed class MultiplayerSessionOrchestrator
     /// <returns>A task that completes when input message is sent.</returns>
     public Task PublishPlayerInputAsync(PlayerId playerId, string inputJson, CancellationToken ct = default)
     {
+        var payload = new
+        {
+            playerId = playerId.Value,
+            input = JsonSerializer.Deserialize<JsonElement>(inputJson)
+        };
+
         var replicationMessage = new ReplicationMessage(
             MessageType: "PlayerInput",
-            PayloadJson: $"{{\"playerId\":\"{playerId.Value}\",\"input\":{inputJson}}}"
+            PayloadJson: JsonSerializer.Serialize(payload)
         );
 
         return _transport.SendAsync(replicationMessage, ct);
