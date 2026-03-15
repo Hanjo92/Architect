@@ -1,6 +1,21 @@
 # Architect
 
-`project-structure-design` 스킬을 중심으로, 게임/웹앱 프로젝트의 구조 설계와 초기 스캐폴딩을 지원하는 저장소입니다.
+게임과 웹앱 프로젝트를 위한 구조 설계, 마이그레이션 계획, 초기 스캐폴딩 자산을 제공하는 아키텍처 스킬 저장소입니다.
+
+Architecture skill repository for project structure design, migration planning, and starter scaffolding across game and web-app projects.
+
+## Why This Repo
+
+- DDD-first project structure design for game and web-app projects
+- Unity guidance with Outgame(DDD) / Ingame(ECS) separation
+- UPM modularization and multiplayer Port/Adapter boundaries
+- Planning augmentation, domain extraction, and migration task boards
+- Platform-portable assets for Codex, Claude, and Antigravity
+
+## Release
+
+- Latest release: [v0.1.0](https://github.com/Hanjo92/Architect/releases/tag/v0.1.0)
+- Changelog: [CHANGELOG.md](/Users/song/Projects/Architect/CHANGELOG.md)
 
 ## 포함 내용
 
@@ -10,6 +25,8 @@
 - 실행 스크립트:
   - `skills/project-structure-design/scripts/generate_structure.py`
   - `skills/project-structure-design/scripts/validate_skill_integrity.py`
+- 릴리즈 문서:
+  - `CHANGELOG.md`
 - 플랫폼 마이그레이션 문서:
   - `Platform/README.md`
   - `Platform/platform-migration-manifest.template.json`
@@ -111,7 +128,7 @@ git submodule update --init --recursive
 
 ```bash
 # 기본 검증
-python3 "$CODEX_HOME/skills/.system/skill-creator/scripts/quick_validate.py" \
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" \
   skills/project-structure-design
 
 # 커스텀 무결성 검증
