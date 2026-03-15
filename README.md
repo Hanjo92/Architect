@@ -1,4 +1,6 @@
 # Architect
+![Project Structure Design Banner](assets/project_structure_design_banner.png)
+
 
 게임과 웹앱 프로젝트를 위한 구조 설계, 마이그레이션 계획, 초기 스캐폴딩 자산을 제공하는 아키텍처 스킬 저장소입니다.
 
