@@ -1,0 +1,11 @@
+{
+  "platform": "antigravity",
+  "agent_config": "agent-config.template.yaml",
+  "prompt_pack": "prompt-pack.template.md",
+  "required_sections": [
+    "decision routing",
+    "domain extraction quality",
+    "migration task board",
+    "json companion"
+  ]
+}

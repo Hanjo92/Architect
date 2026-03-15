@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "platform": "claude",
+    "project_type": "game",
+    "genre": "casual"
+  },
+  "domain_extraction": {
+    "domains": [
+      {
+        "domain_name": "Progression",
+        "zone": "Outgame(DDD)",
+        "confidence_score": 0.81
+      },
+      {
+        "domain_name": "StageRuntime",
+        "zone": "Ingame(ECS)",
+        "confidence_score": 0.79
+      }
+    ]
+  },
+  "architecture_recommendation": {
+    "style": "Outgame DDD + Ingame ECS",
+    "multiplayer_boundary": "Port/Adapter"
+  }
+}

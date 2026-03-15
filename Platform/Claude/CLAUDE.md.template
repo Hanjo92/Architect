@@ -1,0 +1,18 @@
+# Claude Project Guide
+
+## Role
+
+Use the project-structure-design guidance to analyze planning docs, extract domains, and propose architecture with DDD/ECS split where applicable.
+
+## Primary Rules
+
+- Prefer concise architecture guidance with clear assumptions.
+- When input planning is thin, propose lightweight planning augmentation first.
+- When many planning docs exist, organize them by domain before proposing structure.
+- For games: Outgame -> DDD, Ingame -> ECS.
+- For Unity: modularize Ads/Achievements/Social behind Port/Adapter boundaries.
+
+## Output Mode
+
+- Default to Markdown.
+- Add JSON companion when machine-readable output is requested.

@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "platform": "antigravity",
+    "project_type": "game",
+    "genre": "casual"
+  },
+  "planning_doc_domain_map": [
+    {
+      "doc": "docs/overview.md",
+      "primary_domain": "Progression"
+    },
+    {
+      "doc": "docs/stage-design.md",
+      "primary_domain": "StageRuntime"
+    }
+  ],
+  "domain_extraction": {
+    "domains": [
+      {
+        "domain_name": "LiveOps",
+        "zone": "Outgame(DDD)",
+        "confidence_score": 0.76
+      },
+      {
+        "domain_name": "GameplaySimulation",
+        "zone": "Ingame(ECS)",
+        "confidence_score": 0.8
+      }
+    ]
+  }
+}

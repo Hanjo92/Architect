@@ -10,6 +10,21 @@
 - 실행 스크립트:
   - `skills/project-structure-design/scripts/generate_structure.py`
   - `skills/project-structure-design/scripts/validate_skill_integrity.py`
+- 플랫폼 마이그레이션 문서:
+  - `Platform/README.md`
+  - `Platform/platform-migration-manifest.template.json`
+  - `Platform/shared-migration-playbook.md`
+  - `Platform/Codex/README.md`
+  - `Platform/Codex/sample-output.md`
+  - `Platform/Codex/sample-output.json`
+  - `Platform/Claude/README.md`
+  - `Platform/Claude/example-usage.md`
+  - `Platform/Claude/sample-output.md`
+  - `Platform/Claude/sample-output.json`
+  - `Platform/Antigravity/README.md`
+  - `Platform/Antigravity/example-usage.md`
+  - `Platform/Antigravity/sample-output.md`
+  - `Platform/Antigravity/sample-output.json`
 - 샘플 세트:
   - 공통: `skills/project-structure-design/samples/common-game/`
   - 캐주얼: `skills/project-structure-design/samples/casual-game/`

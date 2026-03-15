@@ -1,0 +1,16 @@
+platform: antigravity
+agent:
+  name: project-structure-design
+  role: architecture_designer
+  mode: advisory
+inputs:
+  references_root: skills/project-structure-design/references
+  samples_root: skills/project-structure-design/samples
+outputs:
+  markdown: true
+  json_companion: true
+rules:
+  - ddd_first
+  - outgame_ddd_ingame_ecs
+  - unity_upm_port_adapter
+  - migration_task_board_required_for_large_changes

@@ -1,0 +1,38 @@
+{
+  "project": "project-structure-design",
+  "source_platform": "codex",
+  "target_platform": "claude",
+  "migration_units": [
+    {
+      "name": "prompting",
+      "status": "planned",
+      "owner": "",
+      "notes": ""
+    },
+    {
+      "name": "references",
+      "status": "planned",
+      "owner": "",
+      "notes": ""
+    },
+    {
+      "name": "samples",
+      "status": "planned",
+      "owner": "",
+      "notes": ""
+    },
+    {
+      "name": "validation",
+      "status": "planned",
+      "owner": "",
+      "notes": ""
+    }
+  ],
+  "compatibility_notes": [],
+  "open_issues": [],
+  "validation": {
+    "doc_paths_checked": false,
+    "prompt_paths_checked": false,
+    "output_examples_checked": false
+  }
+}

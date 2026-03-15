@@ -1,6 +1,10 @@
 # Migration Playbook
 
 Use this playbook when a project must move from current structure to target architecture.
+When migration target is another agent/platform environment, also review:
+- [Platform overview](../../../Platform/README.md)
+- [Shared platform playbook](../../../Platform/shared-migration-playbook.md)
+- target platform notes under `../../../Platform/<Platform>/`
 
 ## 0) Create Migration Task Board (Mandatory for large projects)
 

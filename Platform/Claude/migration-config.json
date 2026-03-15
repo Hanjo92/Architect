@@ -1,0 +1,16 @@
+{
+  "platform": "claude",
+  "inputs": {
+    "project_guide": "CLAUDE.md",
+    "system_prompt": "system-prompt.template.md"
+  },
+  "mapping": {
+    "skill_root": "skills/project-structure-design",
+    "references_root": "skills/project-structure-design/references"
+  },
+  "validation_checks": [
+    "prompt_sections_present",
+    "json_output_contract_present",
+    "migration_task_board_rules_present"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "platform": "codex",
+  "project_type": "game",
+  "engine": "unity",
+  "genre": "common",
+  "planning_depth": "medium",
+  "domains": {
+    "outgame": [
+      "Account",
+      "Progression",
+      "Monetization",
+      "Social"
+    ],
+    "ingame": [
+      "GameplaySimulation",
+      "StageRuntime",
+      "CharacterRuntime"
+    ]
+  },
+  "multiplayer": {
+    "enabled": true,
+    "boundary": "port_adapter"
+  },
+  "packages": [
+    "com.company.game.ads",
+    "com.company.game.achievements",
+    "com.company.game.social"
+  ],
+  "validation": {
+    "markdown_output": true,
+    "json_output": true,
+    "base_validator": "when_available",
+    "integrity_validator": "required"
+  },
+  "next_steps": [
+    "Confirm bounded contexts and ECS slices.",
+    "Generate starter folder tree and UPM skeletons.",
+    "Plan the first delivery batch."
+  ]
+}
