@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Game.Multiplayer.Abstractions;
@@ -52,9 +53,15 @@ public sealed class MultiplayerSessionOrchestrator
     /// <returns>A task that completes when input message is sent.</returns>
     public Task PublishPlayerInputAsync(PlayerId playerId, string inputJson, CancellationToken ct = default)
     {
+        var payload = new
+        {
+            playerId = playerId.Value,
+            input = JsonSerializer.Deserialize<JsonElement>(inputJson)
+        };
+
         var replicationMessage = new ReplicationMessage(
             MessageType: "PlayerInput",
-            PayloadJson: $"{{\"playerId\":\"{playerId.Value}\",\"input\":{inputJson}}}"
+            PayloadJson: JsonSerializer.Serialize(payload)
         );
 
         return _transport.SendAsync(replicationMessage, ct);
@@ -85,25 +92,25 @@ public sealed class MultiplayerSessionOrchestrator
             return;
         }
 
-        // Very small parser for sample use only.
-        var key = "\"playerId\":\"";
-        var start = message.PayloadJson.IndexOf(key, StringComparison.Ordinal);
-        if (start < 0)
+        try
         {
-            return;
-        }
+            var payload = JsonSerializer.Deserialize<PlayerJoinedPayload>(message.PayloadJson);
+            if (payload == null || string.IsNullOrEmpty(payload.playerId))
+            {
+                return;
+            }
 
-        start += key.Length;
-        var end = message.PayloadJson.IndexOf('"', start);
-        if (end < 0)
-        {
-            return;
+            var player = new PlayerId(payload.playerId);
+            if (!_players.Contains(player))
+            {
+                _players.Add(player);
+            }
         }
-
-        var player = new PlayerId(message.PayloadJson[start..end]);
-        if (!_players.Contains(player))
+        catch (JsonException)
         {
-            _players.Add(player);
+            // Invalid JSON payload for PlayerJoined event
         }
     }
+
+    private record PlayerJoinedPayload(string playerId);
 }
