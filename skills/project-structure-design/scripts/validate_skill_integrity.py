@@ -100,6 +100,19 @@ def check_skill_md_exists(errors: list[str]) -> str:
     return SKILL_MD.read_text(encoding="utf-8")
 
 
+def check_frontmatter_description(skill_text: str, errors: list[str]) -> None:
+    match = re.search(r"^description:\s*(.+)$", skill_text, re.MULTILINE)
+    if not match:
+        errors.append("Missing frontmatter description in SKILL.md")
+        return
+
+    description = match.group(1)
+    if not description.startswith("Use when"):
+        errors.append("Frontmatter description must start with 'Use when'")
+    if len(description) > 500:
+        errors.append("Frontmatter description must stay within 500 characters")
+
+
 def check_markdown_links(skill_text: str, errors: list[str]) -> None:
     # Supports [text](relative/path.md) links only.
     links = re.findall(r"\[[^\]]+\]\(([^)]+)\)", skill_text)
@@ -124,6 +137,7 @@ def main() -> int:
     check_required_samples(errors)
     skill_text = check_skill_md_exists(errors)
     if skill_text:
+        check_frontmatter_description(skill_text, errors)
         check_markdown_links(skill_text, errors)
         check_critical_phrases(skill_text, errors)
 
