@@ -7,10 +7,18 @@ import argparse
 import json
 import re
 import sys
-import tomllib
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Iterable
+
+try:
+    import tomllib
+except ModuleNotFoundError as exc:
+    raise SystemExit(
+        "check_boundaries.py requires Python 3.11+ for TOML parsing. "
+        "Run it with `python3.11 <skill-root>/scripts/check_boundaries.py ...` "
+        "or `uv run --python 3.11 <skill-root>/scripts/check_boundaries.py ...`."
+    ) from exc
 
 
 IMPORT_PATTERNS: dict[str, list[re.Pattern[str]]] = {

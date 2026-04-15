@@ -11,6 +11,9 @@ Start with:
 
 Suggested config fragments:
 
+These rules match dependency strings such as C# namespaces, not source file paths.
+For C# examples, use your solution's root namespace in the regex rather than a filesystem pattern.
+
 ```toml
 [[rules]]
 name = "domain-no-infra-or-presentation"
@@ -23,8 +26,9 @@ message = "Domain code must stay free of infrastructure and presentation depende
 name = "cross-context-internals"
 severity = "warning"
 source_globs = ["src/contexts/**/*.cs"]
-forbidden_patterns = ['src/contexts/.+/(domain|application|infrastructure)/']
-message = "Check whether bounded contexts are reaching into each other's internals."
+forbidden_patterns = ['^Acme\\.Product\\.Contexts\\.[A-Za-z0-9_]+\\.(Domain|Application|Infrastructure)\\.']
+allowed_patterns = ['\\.Contracts\\.', '\\.Shared\\.']
+message = "Check whether bounded contexts are reaching into each other's internal layers through direct namespace references."
 ```
 
 When writing regex patterns in TOML, prefer single-quoted strings:

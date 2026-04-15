@@ -11,6 +11,22 @@ Resolve bundled script paths relative to this `SKILL.md`. When this skill is ins
 
 ## Workflow
 
+### Runtime
+
+Use Python 3.11+ for the checker because it relies on the standard-library `tomllib` parser.
+
+Preferred command:
+
+```bash
+uv run --python 3.11 <skill-root>/scripts/check_boundaries.py --root <repo-root> --config <repo-root>/dependency-boundaries.toml
+```
+
+Alternative when `python3.11` is already installed:
+
+```bash
+python3.11 <skill-root>/scripts/check_boundaries.py --root <repo-root> --config <repo-root>/dependency-boundaries.toml
+```
+
 ### 1) Identify the boundary model
 
 Classify the repository before checking:
@@ -49,13 +65,15 @@ Use these defaults unless the repository proves otherwise:
 Use the scanner from `<skill-root>`:
 
 ```bash
-python3 <skill-root>/scripts/check_boundaries.py --root <repo-root> --config <repo-root>/dependency-boundaries.toml
+uv run --python 3.11 <skill-root>/scripts/check_boundaries.py --root <repo-root> --config <repo-root>/dependency-boundaries.toml
 ```
 
 Useful options:
 - `--format text|json`
 - `--include-warnings`
 - `--fail-on warning|error`
+
+If `python3.11` is available locally, you can run the same command with `python3.11` instead of `uv run`.
 
 If the repository has no config yet, create one from [common-boundary-patterns.md](references/common-boundary-patterns.md), then run the checker.
 

@@ -1,6 +1,6 @@
 ---
 name: project-structure-design
-description: Design project structure and system architecture for new or evolving software projects with a DDD-first approach and functional C# implementation guidance. For games, split Outgame(DDD) and Ingame(ECS), apply Unity UPM modularization, and keep multiplayer behind Port/Adapter boundaries. Support phased migration planning, including engine migration, runtime stack replacement, and ambiguous subsystem cutover decisions. Use for repository layout, bounded contexts, module boundaries, folder structure, architecture decisions, Unity/web-app structure, migration strategy, and requests like "프로젝트 구조 설계", "폴더 구조 추천", "유니티 폴더 구조", "UPM 패키지 구조", "엔진 마이그레이션", "엔진 업그레이드", and "마이그레이션 전략".
+description: Use when designing project structure, bounded contexts, folder layout, Unity or web-app architecture, or migration boundaries for a new or evolving codebase, including asks like 프로젝트 구조 설계, 폴더 구조 추천, and 엔진 마이그레이션.
 ---
 
 # Project Structure Design
